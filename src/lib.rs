@@ -85,6 +85,7 @@ pub mod countries;
 pub mod errors;
 pub mod invoice;
 pub mod orders;
+pub mod webhooks;
 
 use errors::{PaypalError, ResponseError};
 use reqwest::header;
