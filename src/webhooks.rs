@@ -33,19 +33,19 @@ pub struct Verification {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct WebhookVerificationPayload<T> {
     /// The ID of the HTTP transmission. Contained in the PAYPAL-TRANSMISSION-ID header of the notification message.
-    transmission_id: String,
+    pub transmission_id: String,
     /// The date and time of the HTTP transmission, in Internet date and time format. Appears in the PAYPAL-TRANSMISSION-TIME header of the notification message.
-    transmission_time: String,
+    pub transmission_time: String,
     /// The X.509 public key certificate. Download the certificate from this URL and use it to verify the signature. Extract this value from the PAYPAL-CERT-URL response header, which is received with the webhook notification.
-    cert_url: String,
+    pub cert_url: String,
     /// The algorithm that PayPal uses to generate the signature and that you can use to verify the signature. Extract this value from the PAYPAL-AUTH-ALGO response header, which is received with the webhook notification.
-    auth_algo: String,
+    pub auth_algo: String,
     /// The PayPal-generated asymmetric signature. Appears in the PAYPAL-TRANSMISSION-SIG header of the notification message.
-    transmission_sig: String,
+    pub transmission_sig: String,
     /// The ID of the webhook as configured in your Developer Portal account.
-    webhook_id: String,
+    pub webhook_id: String,
     /// A webhook event notification.
-    webhook_event: T
+    pub webhook_event: T
 }
 
 impl super::Client {
