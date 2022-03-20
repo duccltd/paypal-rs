@@ -5,10 +5,11 @@
 //!
 //! Reference: https://developer.paypal.com/api/webhooks/v1/
 
-use crate::HeaderParams;
+use crate::client::HeaderParams;
 use crate::errors::{PaypalError, ResponseError};
 use serde::{Deserialize, Serialize};
 use serde_with::skip_serializing_none;
+use crate::client::{Client};
 
 /// The verification status
 #[derive(Debug, Serialize, Deserialize, Eq, PartialEq)]
@@ -48,7 +49,7 @@ pub struct WebhookVerificationPayload<T> {
     pub webhook_event: T
 }
 
-impl super::Client {
+impl Client {
     /// Verify webhook signature
     pub async fn verify_signature<T: Serialize>(
         &mut self,

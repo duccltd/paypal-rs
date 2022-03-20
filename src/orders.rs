@@ -6,7 +6,7 @@
 
 use crate::common::*;
 use crate::errors::{PaypalError, ResponseError};
-use crate::HeaderParams;
+use crate::client::{HeaderParams, Client};
 use serde::{Deserialize, Serialize};
 use serde_with::skip_serializing_none;
 
@@ -723,7 +723,7 @@ pub struct Order {
     pub links: Vec<LinkDescription>,
 }
 
-impl super::Client {
+impl Client {
     /// Creates an order. Supports orders with only one purchase unit.
     pub async fn create_order(
         &mut self,
@@ -753,7 +753,7 @@ impl super::Client {
         order_id: &str,
         endpoint: &str,
         post: bool,
-        header_params: crate::HeaderParams,
+        header_params: crate::client::HeaderParams,
     ) -> Result<Order, ResponseError> {
         let format = format!("{}/v2/checkout/orders/{}/{}", self.endpoint(), order_id, endpoint);
 
@@ -849,7 +849,7 @@ impl super::Client {
             self.setup_headers(
                 self.client
                     .patch(&format!("{}/v2/checkout/orders/{}", self.endpoint(), id)),
-                crate::HeaderParams {
+                crate::client::HeaderParams {
                     content_type: Some(String::from("application/json")),
                     ..Default::default()
                 },
@@ -878,7 +878,7 @@ impl super::Client {
     pub async fn capture_order(
         &mut self,
         order_id: &str,
-        header_params: crate::HeaderParams,
+        header_params: crate::client::HeaderParams,
     ) -> Result<Order, ResponseError> {
         self.build_endpoint_order(order_id, "capture", true, header_params)
             .await

@@ -8,11 +8,12 @@
 
 use crate::common::*;
 use crate::errors::{PaypalError, ResponseError};
-use crate::HeaderParams;
+use crate::client::HeaderParams;
 use bytes::Bytes;
 use serde::{Deserialize, Serialize};
 use serde_with::skip_serializing_none;
 use std::collections::HashMap;
+use crate::client::{Client};
 
 /// Paypal File reference
 #[derive(Debug, Serialize, Deserialize)]
@@ -643,7 +644,7 @@ pub struct RecordPaymentPayload {
     shipping_info: Option<ContactInformation>,
 }
 
-impl super::Client {
+impl Client {
     /// Generates the next invoice number that is available to the merchant.
     ///
     /// The next invoice number uses the prefix and suffix from the last invoice number and increments the number by one.
@@ -651,7 +652,7 @@ impl super::Client {
     /// For example, the next invoice number after `INVOICE-1234` is `INVOICE-1235`.
     pub async fn generate_invoice_number(
         &mut self,
-        header_params: crate::HeaderParams,
+        header_params: crate::client::HeaderParams,
     ) -> Result<String, ResponseError> {
         let build = self
             .setup_headers(
@@ -866,7 +867,7 @@ impl super::Client {
         &mut self,
         invoice_id: &str,
         payload: RecordPaymentPayload,
-        header_params: crate::HeaderParams,
+        header_params: crate::client::HeaderParams,
     ) -> Result<String, ResponseError> {
         let build = self
             .setup_headers(
