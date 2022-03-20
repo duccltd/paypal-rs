@@ -49,6 +49,30 @@ pub struct WebhookVerificationPayload<T> {
     pub webhook_event: T
 }
 
+/// Webhook callback
+#[skip_serializing_none]
+#[derive(Debug, Serialize, Deserialize)]
+pub struct Webhook<T> {
+    /// The ID of the webhook.
+    pub id: String,
+    /// The creation type of the webhook.
+    pub create_time: String,
+    /// The event type of the webhook.
+    pub event_type: String,
+    /// The resource type of the webhook body.
+    pub resource_type: String,
+    /// The resource version from the api.
+    pub resource_version: String,
+    /// Webhook summary description.
+    pub summary: String,
+    /// The resource from resource type.
+    pub resource: T,
+    /// Maybe unix timestamp?
+    pub zts: i64,
+    /// Version of the event
+    pub event_version: String,
+}
+
 impl Client {
     /// Verify webhook signature
     pub async fn verify_signature<T: Serialize>(
