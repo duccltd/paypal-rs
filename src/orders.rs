@@ -706,8 +706,6 @@ pub struct Order {
     pub create_time: Option<chrono::DateTime<chrono::Utc>>,
     /// The date and time when the transaction was last updated.
     pub update_time: Option<chrono::DateTime<chrono::Utc>>,
-    /// The gross order amount
-    pub gross_amount: Option<Amount>,
     /// The ID of the order.
     pub id: String,
     /// The payment source used to fund the payment.
