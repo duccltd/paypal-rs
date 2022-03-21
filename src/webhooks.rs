@@ -5,6 +5,7 @@
 //!
 //! Reference: https://developer.paypal.com/api/webhooks/v1/
 
+use crate::common::*;
 use crate::client::HeaderParams;
 use crate::errors::{PaypalError, ResponseError};
 use serde::{Deserialize, Serialize};
@@ -68,9 +69,11 @@ pub struct Webhook<T> {
     /// The resource from resource type.
     pub resource: T,
     /// Maybe unix timestamp?
-    pub zts: i64,
+    pub zts: Option<i64>,
     /// Version of the event
     pub event_version: String,
+    /// An array of request-related HATEOAS links
+    pub links: Vec<LinkDescription>,
 }
 
 impl Client {
