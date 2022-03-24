@@ -81,7 +81,7 @@ impl Client {
     pub async fn verify_signature<T: Serialize>(
         &mut self,
         signature: WebhookVerificationPayload<T>,
-        header_params: HeaderParams,
+        _header_params: HeaderParams,
     ) -> Result<Verification, ResponseError> {
         let builder = {
             self.setup_headers(

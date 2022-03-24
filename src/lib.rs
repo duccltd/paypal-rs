@@ -87,3 +87,4 @@ pub mod errors;
 pub mod invoice;
 pub mod orders;
 pub mod webhooks;
+pub mod capture;
