@@ -86,7 +86,10 @@ impl Client {
         let builder = {
             self.setup_headers(
                 self.client.post(&format!("{}/v1/notifications/verify-webhook-signature", self.endpoint())),
-                header_params,
+                crate::client::HeaderParams {
+                    content_type: Some(String::from("application/json")),
+                    ..Default::default()
+                },
             )
             .await
         };
