@@ -66,7 +66,7 @@ pub struct Payment {
     /// An array of request-related HATEOAS links. To complete payer approval, use the approve link to redirect the payer.
     pub links: Vec<LinkDescription>,
     /// Capture identifier
-    pub id: Option<String>,
+    pub id: String,
     /// Capture status
     pub status: Option<CaptureStatus>,
 }
