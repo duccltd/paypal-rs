@@ -8,8 +8,12 @@ use serde::{Deserialize, Serialize};
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 #[allow(non_camel_case_types)]
 pub enum SellerProtectionStatus {
-    /// Seller protection eligability
-    Eligable,
+    /// Your PayPal balance remains intact if the customer claims that they did not receive an item or the account holder claims that they did not authorize the payment.
+    Eligible,
+    /// Your PayPal balance remains intact if the customer claims that they did not receive an item.
+    PartiallyEligible,
+    /// This transaction is not eligible for seller protection.
+    NotEligible
 }
 
 /// Seller protection
