@@ -313,7 +313,7 @@ pub(crate) trait Endpoint {
 mod tests {
     use crate::common::Currency;
     use crate::countries::Country;
-    use crate::{webhooks::*, orders::*, Client, HeaderParams};
+    use crate::{webhooks::*, orders::*, client::Client, client::HeaderParams};
     use std::env;
     use std::str::FromStr;
 

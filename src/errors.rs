@@ -15,7 +15,7 @@ pub struct PaypalError {
     /// Paypal debug id
     pub debug_id: Option<String>,
     /// Error details
-    pub details: Vec<HashMap<String, String>>,
+    pub details: Option<Vec<HashMap<String, String>>>,
     /// Only available on Identity errors
     pub error: Option<String>,
     /// Only available on Identity errors
