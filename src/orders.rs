@@ -676,9 +676,9 @@ pub struct WalletResponse {
 #[derive(Debug, Serialize, Deserialize)]
 pub struct PaymentSourceResponse {
     /// The payment card to use to fund a payment. Card can be a credit or debit card
-    pub card: CardResponse,
+    pub card: Option<CardResponse>,
     /// The customer's wallet used to fund the transaction.
-    pub wallet: WalletResponse,
+    pub wallet: Option<WalletResponse>,
 }
 
 /// The status of an order.
